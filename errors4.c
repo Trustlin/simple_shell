@@ -2,18 +2,18 @@
 
 /**
  * _erratoi - converts a string to an integer
- * @s: string to be converted
- * Return: 0 or -1
+ * @s: the string to be converted
+ * Return: 0 if no numbers in string, converted number otherwise
+ *       -1 on error
  */
-
 int _erratoi(char *s)
 {
 	int i = 0;
 	unsigned long int result = 0;
 
 	if (*s == '+')
-		s++;
-	for (i = 0; s[i] != '\0'; i++)
+		s++;  /* TODO: why does this make main return 255? */
+	for (i = 0;  s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
 		{
@@ -30,11 +30,11 @@ int _erratoi(char *s)
 
 /**
  * print_error - prints an error message
- * @info: parameter and return info struct
- * @estr: string
- * Return: 0 or -1
+ * @info: the parameter & return info struct
+ * @estr: string containing specified error type
+ * Return: 0 if no numbers in string, converted number otherwise
+ *        -1 on error
  */
-
 void print_error(info_t *info, char *estr)
 {
 	_eputs(info->fname);
@@ -47,12 +47,12 @@ void print_error(info_t *info, char *estr)
 }
 
 /**
- * print_d - prints a decimal number
- * @input: input
- * @fd: filedescriptor to write to
- * Return: numbers of charactr printed
+ * print_d - function prints a decimal (integer) number (base 10)
+ * @input: the input
+ * @fd: the filedescriptor to write to
+ *
+ * Return: number of characters printed
  */
-
 int print_d(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
@@ -86,13 +86,13 @@ int print_d(int input, int fd)
 }
 
 /**
- * convert_number - converter function
+ * convert_number - converter function, a clone of itoa
  * @num: number
  * @base: base
  * @flags: argument flags
+ *
  * Return: string
  */
-
 char *convert_number(long int num, int base, int flags)
 {
 	static char *array;
@@ -111,7 +111,7 @@ char *convert_number(long int num, int base, int flags)
 	ptr = &buffer[49];
 	*ptr = '\0';
 
-	do  {
+	do	{
 		*--ptr = array[n % base];
 		n /= base;
 	} while (n != 0);
@@ -122,11 +122,11 @@ char *convert_number(long int num, int base, int flags)
 }
 
 /**
- * remove_comments - replaces first instanceof # with \0
- * @buf: address of string
- * Return: 0
+ * remove_comments - function replaces first instance of '#' with '\0'
+ * @buf: address of the string to modify
+ *
+ * Return: Always 0;
  */
-
 void remove_comments(char *buf)
 {
 	int i;

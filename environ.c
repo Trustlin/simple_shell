@@ -2,10 +2,10 @@
 
 /**
  * _myenv - prints the current environment
- * @info: maintain function prototype
- * Return: 0
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ * Return: Always 0
  */
-
 int _myenv(info_t *info)
 {
 	print_list_str(info->env);
@@ -13,9 +13,10 @@ int _myenv(info_t *info)
 }
 
 /**
- * _getenv - gets value of an environ variable
- * @info: structure containing arguments
- * @name: name
+ * _getenv - gets the value of an environ variable
+ * @info: Structure containing potential arguments. Used to maintain
+ * @name: env var name
+ *
  * Return: the value
  */
 char *_getenv(info_t *info, const char *name)
@@ -34,16 +35,17 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - modify a existing one
- * @info: maintain function prototype
- * Return: 0
+ * _mysetenv - Initialize a new environment variable,
+ *             or modify an existing one
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return: Always 0
  */
-
 int _mysetenv(info_t *info)
 {
 	if (info->argc != 3)
 	{
-		_eputs("Incorrect number of arguments\n");
+		_eputs("Incorrect number of arguements\n");
 		return (1);
 	}
 	if (_setenv(info, info->argv[1], info->argv[2]))
@@ -53,8 +55,9 @@ int _mysetenv(info_t *info)
 
 /**
  * _myunsetenv - Remove an environment variable
- * @info: maintain function prototype
- * Return: 0
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return: Always 0
  */
 int _myunsetenv(info_t *info)
 {
@@ -62,7 +65,7 @@ int _myunsetenv(info_t *info)
 
 	if (info->argc == 1)
 	{
-		_eputs("Too few arguments.\n");
+		_eputs("Too few arguements.\n");
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
@@ -73,11 +76,10 @@ int _myunsetenv(info_t *info)
 
 /**
  * populate_env_list - populates env linked list
- * @info: maintain constant function prototype
- * Return: 0
- *
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ * Return: Always 0
  */
-
 int populate_env_list(info_t *info)
 {
 	list_t *node = NULL;

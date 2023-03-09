@@ -1,11 +1,12 @@
 #include "shell.h"
 
 /**
- * _myhistory - display history list
- * @info: maintain constant prototype
- * Return: 0
+ * _myhistory - displays the history list, one command by line, preceded
+ *              with line numbers, starting at 0.
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return: Always 0
  */
-
 int _myhistory(info_t *info)
 {
 	print_list(info->history);
@@ -15,10 +16,10 @@ int _myhistory(info_t *info)
 /**
  * unset_alias - sets alias to string
  * @info: parameter struct
- * @str: string alias
- * Return: 0 or 1
+ * @str: the string alias
+ *
+ * Return: Always 0 on success, 1 on error
  */
-
 int unset_alias(info_t *info, char *str)
 {
 	char *p, c;
@@ -30,7 +31,7 @@ int unset_alias(info_t *info, char *str)
 	c = *p;
 	*p = 0;
 	ret = delete_node_at_index(&(info->alias),
-			get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 	*p = c;
 	return (ret);
 }
@@ -38,10 +39,10 @@ int unset_alias(info_t *info, char *str)
 /**
  * set_alias - sets alias to string
  * @info: parameter struct
- * @str: string alias
- * Return: 0 or 1
+ * @str: the string alias
+ *
+ * Return: Always 0 on success, 1 on error
  */
-
 int set_alias(info_t *info, char *str)
 {
 	char *p;
@@ -58,10 +59,10 @@ int set_alias(info_t *info, char *str)
 
 /**
  * print_alias - prints an alias string
- * @node: alias node
- * Return: 0 or 1
+ * @node: the alias node
+ *
+ * Return: Always 0 on success, 1 on error
  */
-
 int print_alias(list_t *node)
 {
 	char *p = NULL, *a = NULL;
@@ -80,11 +81,11 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias - mimics the alias builtin
- * @info: maintain function prototype
- * Return: 0
+ * _myalias - mimics the alias builtin (man alias)
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: Always 0
  */
-
 int _myalias(info_t *info)
 {
 	int i = 0;
